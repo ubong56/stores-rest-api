@@ -1,3 +1,5 @@
+
+import os
 import sys
 
 sys.path
@@ -20,7 +22,7 @@ api = Api(app)
 
 # config JWT to expire within half an hour
 app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds=1800)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_UR','sqlite:///data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # config JWT auth key name to be 'email' instead of default 'username'
 app.config['JWT_AUTH_USERNAME_KEY'] = 'email'
